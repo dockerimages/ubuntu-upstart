@@ -7,7 +7,7 @@ FROM dockerimages/ubuntu-baseimage
 RUN apt-get update && apt-get install -y ssh
 
 
-RUN /bin/bash -c "export INSERT=`cat <<EOF
+RUN /bin/bash -c 'export INSERT=<<EOF
 # fake some events needed for correct startup other services
 
 description "In-Container Upstart Fake Events"
@@ -22,7 +22,7 @@ rm -rf /var/run/network/*
 /sbin/initctl emit runlevel RUNLEVEL=3 --no-wait
 end script
 
-EOF` && echo -e $INSERT > /etc/init/fake-container-events.conf"
+EOF` && echo -e $INSERT > /etc/init/fake-container-events.conf'
 
 #ADD init-fake.conf /etc/init/fake-container-events.conf
 
