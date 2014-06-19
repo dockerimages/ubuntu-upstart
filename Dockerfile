@@ -6,7 +6,7 @@ FROM dockerimages/ubuntu-baseimage
 # we're going to want this bad boy installed so we can connect :)
 RUN apt-get update && apt-get install -y ssh
 
-RUN cat <<EOF > /etc/init/fake-container-events.conf
+RUN cat > /etc/init/fake-container-events.conf <<EOF
 
 # fake some events needed for correct startup other services
 
