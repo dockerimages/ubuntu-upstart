@@ -6,8 +6,8 @@ FROM dockerimages/ubuntu-baseimage
 # we're going to want this bad boy installed so we can connect :)
 RUN apt-get update && apt-get install -y ssh
 
-RUN cat > /etc/init/fake-container-events.conf <<EOF
 
+RUN export INSERT=$(cat <<EOF
 # fake some events needed for correct startup other services
 
 description "In-Container Upstart Fake Events"
@@ -21,7 +21,9 @@ rm -rf /var/run/network/*
 /sbin/initctl emit started JOB=udev --no-wait
 /sbin/initctl emit runlevel RUNLEVEL=3 --no-wait
 end script
+
 EOF
+) && echo -e $INSERT > /etc/init/fake-container-events.conf 
 
 #ADD init-fake.conf /etc/init/fake-container-events.conf
 
