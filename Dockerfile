@@ -22,8 +22,7 @@ rm -rf /var/run/network/*
 /sbin/initctl emit runlevel RUNLEVEL=3 --no-wait
 end script
 
-EOF
-` && echo -e $INSERT > /etc/init/fake-container-events.conf"
+EOF` && echo -e $INSERT > /etc/init/fake-container-events.conf"
 
 #ADD init-fake.conf /etc/init/fake-container-events.conf
 
