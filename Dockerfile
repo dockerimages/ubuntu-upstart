@@ -1,4 +1,12 @@
 FROM ubuntu:14.04
+## Upgrading to 14.10 from 14.04 becaus we got no 14.10 baseimage this will get removed when ubuntu:14.10 is aviable!
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt utopic main restricted universe multiverse" > /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt utopic-updates main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt utopic-backports main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt utopic-security main restricted universe multiverse" >> /etc/apt/sources.list
+RUN apt-get update && apt-get -y upgrade
+## End Upgrade Compatiblity Hack!
+
 # much of this was gleaned from https://github.com/lxc/lxc/blob/lxc-0.8.0/templates/lxc-ubuntu.in
 # and then heavily modified and hacked like crazy
 # we're going to want this bad boy installed so we can connect :)
